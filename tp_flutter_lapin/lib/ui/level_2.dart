@@ -172,7 +172,7 @@ class _Niveau2ScreenState extends State<Niveau2Screen> {
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.w900),
             ),
             const Text(
-              'Touche le plus rapidement 50 lapins',
+              'Touche le plus rapidement 15 lapins',
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900),
             ),
             Row(

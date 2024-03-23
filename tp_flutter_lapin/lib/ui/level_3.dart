@@ -232,7 +232,7 @@ class _Niveau3ScreenState extends State<Niveau3Screen> {
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.w900),
             ),
             const Text(
-              'Touche le plus rapidement 50 lapins',
+              'Touche le plus rapidement 15 lapins',
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900),
             ),
             Row(
