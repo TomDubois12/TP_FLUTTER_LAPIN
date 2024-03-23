@@ -11,7 +11,7 @@ class Niveau1Screen extends StatefulWidget {
 }
 
 class _Niveau1ScreenState extends State<Niveau1Screen> {
-  int _indexLapin = Random().nextInt(4);
+  int _indexLapin = Random().nextInt(2);
   int _taupe = 0;
   int _lapin = 0;
   Stopwatch _stopwatch = Stopwatch();
@@ -29,7 +29,7 @@ class _Niveau1ScreenState extends State<Niveau1Screen> {
         _stopwatch.stop();
         _showCongratulationsDialog();
       } else {
-        _indexLapin = Random().nextInt(4);
+        _indexLapin = Random().nextInt(2);
       }
     } else {
       _taupe++;
@@ -50,7 +50,8 @@ class _Niveau1ScreenState extends State<Niveau1Screen> {
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text('Vous avez touché 15 lapins en ${_stopwatch.elapsed.inSeconds} secondes.'),
+                Text('Vous avez touché 15 lapins en ${_stopwatch.elapsed
+                    .inSeconds} secondes.'),
                 Text('Retournez au menu pour consulter vos scores')
               ],
             ),
@@ -112,8 +113,8 @@ class _Niveau1ScreenState extends State<Niveau1Screen> {
       },
       child: Image.asset(
         _indexLapin == 0 ? 'assets/lapin.png' : 'assets/taupe.png',
-        width: 50,
-        height: 50,
+        width: 100,
+        height: 100,
       ),
     );
     var b1 = MaterialButton(
@@ -122,28 +123,8 @@ class _Niveau1ScreenState extends State<Niveau1Screen> {
       },
       child: Image.asset(
         _indexLapin == 1 ? 'assets/lapin.png' : 'assets/taupe.png',
-        width: 50,
-        height: 50,
-      ),
-    );
-    var b2 = MaterialButton(
-      onPressed: () {
-        gererTape(2);
-      },
-      child: Image.asset(
-        _indexLapin == 2 ? 'assets/lapin.png' : 'assets/taupe.png',
-        width: 50,
-        height: 50,
-      ),
-    );
-    var b3 = MaterialButton(
-      onPressed: () {
-        gererTape(3);
-      },
-      child: Image.asset(
-        _indexLapin == 3 ? 'assets/lapin.png' : 'assets/taupe.png',
-        width: 50,
-        height: 50,
+        width: 100,
+        height: 100,
       ),
     );
     return Scaffold(
@@ -159,11 +140,17 @@ class _Niveau1ScreenState extends State<Niveau1Screen> {
               children: [
                 Text(
                   "Lapin(s): $_lapin",
-                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
+                  style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w900
+                  ),
                 ),
                 Text(
                   "Taupe(s): $_taupe",
-                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
+                  style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w900
+                  ),
                 )
               ],
             ),
@@ -182,16 +169,11 @@ class _Niveau1ScreenState extends State<Niveau1Screen> {
                 b1,
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                b2,
-                b3,
-              ],
-            ),
           ],
         ),
       ),
     );
+
   }
 }
+
