@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 
 import '../ui/home_page.dart';
+import '../ui/name.dart';
 import '../ui/list_level_page.dart';
 import 'package:tp_flutter_lapin/ui/level_1.dart';
 import 'package:tp_flutter_lapin/ui/level_2.dart';
@@ -31,28 +32,34 @@ final router = GoRouter(
           builder: (context,state) => const HomeScreen(),
           routes: <RouteBase>[
             GoRoute(
-              path: 'level',
-              builder: (context, state) => const LevelsScreen(),
-                routes: [
-                  GoRoute(
-                    path: '1',
-                    builder: (BuildContext context, GoRouterState state){
-                      return const Niveau1Screen();
-                    },
-                  ),
-                  GoRoute(
-                    path: '2',
-                    builder: (BuildContext context, GoRouterState state){
-                      return const Niveau2Screen();
-                    },
-                  ),
-                  GoRoute(
-                    path: '3',
-                    builder: (BuildContext context, GoRouterState state){
-                      return const Niveau3Screen();
-                    },
-                  ),
-                ]
+              path: 'name',
+              builder: (context, state) => const NameScreen(),
+              routes: [
+                GoRoute(
+                    path: 'level',
+                    builder: (context, state) => const LevelsScreen(),
+                    routes: [
+                      GoRoute(
+                        path: '1',
+                        builder: (BuildContext context, GoRouterState state){
+                          return const Niveau1Screen();
+                        },
+                      ),
+                      GoRoute(
+                        path: '2',
+                        builder: (BuildContext context, GoRouterState state){
+                          return const Niveau2Screen();
+                        },
+                      ),
+                      GoRoute(
+                        path: '3',
+                        builder: (BuildContext context, GoRouterState state){
+                          return const Niveau3Screen();
+                        },
+                      ),
+                    ]
+                ),
+              ]
             ),
             GoRoute(
               path: 'score',

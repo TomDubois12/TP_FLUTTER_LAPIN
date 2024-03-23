@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget{
     return MaterialApp.router(
       title: 'Le jeu du lapin',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigoAccent),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
         useMaterial3: true,
       ),
       routerConfig: router,

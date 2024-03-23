@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class Niveau3Screen extends StatelessWidget {
   const Niveau3Screen({Key? key}) : super(key: key);
@@ -10,9 +11,19 @@ class Niveau3Screen extends StatelessWidget {
         title: const Text('Level 3'),
       ),
       body: Center(
-        child: Text(
-          'Contenu de la page Niveau 3',
-          style: Theme.of(context).textTheme.headline5,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'Bienvenue au niveau 3 !',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () => context.go('/home'),
+              child: const Text('Retournez au menu'),
+            ),
+          ],
         ),
       ),
     );

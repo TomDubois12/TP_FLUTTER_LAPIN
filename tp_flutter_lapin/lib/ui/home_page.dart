@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget{
             children: [
               ElevatedButton(
                 child: const Text('Jouer'),
-                onPressed: () => context.go('/home/level'),
+                onPressed: () => context.go('/home/name'),
               ),
               ElevatedButton(
                 child: const Text('Scores'),
