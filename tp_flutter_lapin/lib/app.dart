@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gorouter2324/router/app_router.dart';
+import 'package:tp_flutter_lapin/router/app_router.dart';
 
 class MyApp extends StatelessWidget{
   const MyApp({super.key});
@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Flutter router',
+      title: 'Le jeu du lapin',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigoAccent),
         useMaterial3: true,
