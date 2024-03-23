@@ -168,7 +168,7 @@ class _Niveau2ScreenState extends State<Niveau2Screen> {
               ],
             ),
             const Text(
-              'Niveau 1',
+              'Niveau 2',
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.w900),
             ),
             const Text(
