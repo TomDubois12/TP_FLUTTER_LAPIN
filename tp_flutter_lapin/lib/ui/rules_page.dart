@@ -11,7 +11,7 @@ class RulesScreen extends StatelessWidget {
       ),
       body: Center(
         child: Text(
-          'Contenu de la page des rules',
+          'Contenu de la page des règles',
           style: Theme.of(context).textTheme.headline5,
         ),
       ),
