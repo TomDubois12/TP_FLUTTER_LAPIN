@@ -159,11 +159,11 @@ class _Niveau1ScreenState extends State<Niveau1Screen> {
               children: [
                 Text(
                   "Lapin(s): $_lapin",
-                  style: const TextStyle(color: Colors.black, fontSize: 20),
+                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
                 ),
                 Text(
                   "Taupe(s): $_taupe",
-                  style: const TextStyle(color: Colors.black, fontSize: 20),
+                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
                 )
               ],
             ),
