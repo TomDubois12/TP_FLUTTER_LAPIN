@@ -88,7 +88,7 @@ class _Niveau1ScreenState extends State<Niveau1Screen> {
                 setState(() {
                   _lapin = 0;
                   _taupe = 0;
-                  _indexLapin = Random().nextInt(4);
+                  _indexLapin = Random().nextInt(2);
                   _stopwatch.reset();
                   _stopwatch.start();
                 });
@@ -135,6 +135,10 @@ class _Niveau1ScreenState extends State<Niveau1Screen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
+            const Text(
+              'Niveau 1',
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.w900),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -155,10 +159,6 @@ class _Niveau1ScreenState extends State<Niveau1Screen> {
               ],
             ),
             const Text(
-              'Niveau 1',
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.w900),
-            ),
-            const Text(
               'Touche le plus rapidement 15 lapins',
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900),
             ),
@@ -173,7 +173,6 @@ class _Niveau1ScreenState extends State<Niveau1Screen> {
         ),
       ),
     );
-
   }
 }
 

@@ -60,7 +60,8 @@ class _Niveau3ScreenState extends State<Niveau3Screen> {
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text('Vous avez touché 15 lapins en ${_stopwatch.elapsed.inSeconds} secondes.'),
+                Text('Vous avez touché 15 lapins en ${_stopwatch.elapsed
+                    .inSeconds} secondes.'),
                 Text('Retournez au menu pour consulter vos scores')
               ],
             ),
@@ -97,7 +98,7 @@ class _Niveau3ScreenState extends State<Niveau3Screen> {
                 setState(() {
                   _lapin = 0;
                   _taupe = 0;
-                  _indexLapin = Random().nextInt(4);
+                  _indexLapin = Random().nextInt(9);
                   _stopwatch.reset();
                   _stopwatch.start();
                 });
@@ -214,22 +215,24 @@ class _Niveau3ScreenState extends State<Niveau3Screen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
+            const Text(
+              'Niveau 3',
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.w900),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
                   "Lapin(s): $_lapin",
-                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.w900),
                 ),
                 Text(
                   "Taupe(s): $_taupe",
-                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.w900),
                 )
               ],
-            ),
-            const Text(
-              'Niveau 3',
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.w900),
             ),
             const Text(
               'Touche le plus rapidement 15 lapins',
