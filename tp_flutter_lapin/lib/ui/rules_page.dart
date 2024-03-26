@@ -36,10 +36,6 @@ class RulesScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Text("Venez à bout d'un niveau pour débloquer le suivant, jusqu'à tous les réussir !", textAlign: TextAlign.center),
                 ),
-                const Spacer(),
-                ElevatedButton(
-                    onPressed: null,
-                    child: const Text("Retour au Menu"))
               ],
             )
         ),
