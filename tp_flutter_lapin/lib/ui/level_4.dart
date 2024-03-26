@@ -1,22 +1,23 @@
 import 'dart:async';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
+
+
 import 'package:go_router/go_router.dart';
 
-class Niveau3Screen extends StatefulWidget {
-  const Niveau3Screen({Key? key}) : super(key: key);
+class Niveau4Screen extends StatefulWidget {
+  const Niveau4Screen({Key? key}) : super(key: key);
 
   @override
-  _Niveau3ScreenState createState() => _Niveau3ScreenState();
+  _Niveau4ScreenState createState() => _Niveau4ScreenState();
 }
 
-class _Niveau3ScreenState extends State<Niveau3Screen> {
+class _Niveau4ScreenState extends State<Niveau4Screen> {
+  int randomNumber4Image = Random().nextInt(2);
   int _indexLapin = Random().nextInt(9);
   int _taupe = 0;
   int _lapin = 0;
-  Stopwatch _stopwatch = Stopwatch();
+  final Stopwatch _stopwatch = Stopwatch();
   late Timer _timer;
 
   @override
@@ -31,6 +32,38 @@ class _Niveau3ScreenState extends State<Niveau3Screen> {
     // });
   }
 
+  String get imagePath0 {
+    if (randomNumber4Image == 0) {
+      return 'assets/taupe.png';
+    } else {
+      return 'assets/lapin_inverse.png';
+    }
+  }
+
+  String get imagePath1 {
+    if (randomNumber4Image == 0) {
+      return 'assets/lapin_inverse.png';
+    } else {
+      return 'assets/lapin_noir.png';
+    }
+  }
+
+  String get imagePath2 {
+    if (randomNumber4Image == 0) {
+      return 'assets/lapin_noir.png';
+    } else {
+      return 'assets/taupe_inverse.png';
+    }
+  }
+
+  String get imagePath3 {
+    if (randomNumber4Image == 0) {
+      return 'assets/taupe_inverse.png';
+    } else {
+      return 'assets/Logo.png';
+    }
+  }
+
   void gererTape(int index) {
 
     if (_indexLapin == index) {
@@ -40,11 +73,12 @@ class _Niveau3ScreenState extends State<Niveau3Screen> {
         // _timer.cancel();
         _showCongratulationsDialog();
       } else {
+        randomNumber4Image = Random().nextInt(2);
         _indexLapin = Random().nextInt(9);
       }
     } else {
       _taupe++;
-      if (_taupe == 10) {
+      if (_taupe == 5) {
         _showFailsDialog();
       }
     }
@@ -63,7 +97,7 @@ class _Niveau3ScreenState extends State<Niveau3Screen> {
               children: <Widget>[
                 Text('Vous avez touché 15 lapins en ${_stopwatch.elapsed
                     .inSeconds} secondes.'),
-                Text('Retournez au menu pour consulter vos scores')
+                const Text('Retournez au menu pour consulter vos scores')
               ],
             ),
           ),
@@ -88,7 +122,7 @@ class _Niveau3ScreenState extends State<Niveau3Screen> {
           content: const SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text('Vous avez touché 10 taupes.'),
+                Text('Vous avez touché 5 taupes.'),
               ],
             ),
           ),
@@ -99,6 +133,7 @@ class _Niveau3ScreenState extends State<Niveau3Screen> {
                 setState(() {
                   _lapin = 0;
                   _taupe = 0;
+                  randomNumber4Image = Random().nextInt(2);
                   _indexLapin = Random().nextInt(9);
                   _stopwatch.reset();
                   _stopwatch.start();
@@ -123,17 +158,18 @@ class _Niveau3ScreenState extends State<Niveau3Screen> {
         gererTape(0);
       },
       child: Image.asset(
-        _indexLapin == 0 ? 'assets/lapin.png' : 'assets/taupe.png',
+        _indexLapin == 0 ? 'assets/lapin.png' : imagePath0,
         width: 75,
         height: 75,
       ),
     );
+
     var b1 = MaterialButton(
       onPressed: () {
         gererTape(1);
       },
       child: Image.asset(
-        _indexLapin == 1 ? 'assets/lapin.png' : 'assets/taupe.png',
+        _indexLapin == 1 ? 'assets/lapin.png' : imagePath2,
         width: 75,
         height: 75,
       ),
@@ -143,7 +179,7 @@ class _Niveau3ScreenState extends State<Niveau3Screen> {
         gererTape(2);
       },
       child: Image.asset(
-        _indexLapin == 2 ? 'assets/lapin.png' : 'assets/taupe.png',
+        _indexLapin == 2 ? 'assets/lapin.png' : imagePath1,
         width: 75,
         height: 75,
       ),
@@ -153,7 +189,7 @@ class _Niveau3ScreenState extends State<Niveau3Screen> {
         gererTape(3);
       },
       child: Image.asset(
-        _indexLapin == 3 ? 'assets/lapin.png' : 'assets/taupe.png',
+        _indexLapin == 3 ? 'assets/lapin.png' : imagePath3,
         width: 75,
         height: 75,
       ),
@@ -163,7 +199,7 @@ class _Niveau3ScreenState extends State<Niveau3Screen> {
         gererTape(4);
       },
       child: Image.asset(
-        _indexLapin == 4 ? 'assets/lapin.png' : 'assets/taupe.png',
+        _indexLapin == 4 ? 'assets/lapin.png' : imagePath0,
         width: 75,
         height: 75,
       ),
@@ -173,7 +209,7 @@ class _Niveau3ScreenState extends State<Niveau3Screen> {
         gererTape(5);
       },
       child: Image.asset(
-        _indexLapin == 5 ? 'assets/lapin.png' : 'assets/taupe.png',
+        _indexLapin == 5 ? 'assets/lapin.png' : imagePath2,
         width: 75,
         height: 75,
       ),
@@ -183,7 +219,7 @@ class _Niveau3ScreenState extends State<Niveau3Screen> {
         gererTape(6);
       },
       child: Image.asset(
-        _indexLapin == 6 ? 'assets/lapin.png' : 'assets/taupe.png',
+        _indexLapin == 6 ? 'assets/lapin.png' : imagePath0,
         width: 75,
         height: 75,
       ),
@@ -193,7 +229,7 @@ class _Niveau3ScreenState extends State<Niveau3Screen> {
         gererTape(7);
       },
       child: Image.asset(
-        _indexLapin == 7 ? 'assets/lapin.png' : 'assets/taupe.png',
+        _indexLapin == 7 ? 'assets/lapin.png' : imagePath3,
         width: 75,
         height: 75,
       ),
@@ -203,7 +239,7 @@ class _Niveau3ScreenState extends State<Niveau3Screen> {
         gererTape(8);
       },
       child: Image.asset(
-        _indexLapin == 8 ? 'assets/lapin.png' : 'assets/taupe.png',
+        _indexLapin == 8 ? 'assets/lapin.png' : imagePath2,
         width: 75,
         height: 75,
       ),
@@ -217,7 +253,7 @@ class _Niveau3ScreenState extends State<Niveau3Screen> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             const Text(
-              'Niveau 3',
+              'Niveau 4',
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.w900),
             ),
             Row(
