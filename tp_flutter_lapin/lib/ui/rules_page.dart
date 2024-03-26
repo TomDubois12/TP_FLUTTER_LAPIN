@@ -9,10 +9,35 @@ class RulesScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Règles du jeu'),
       ),
-      body: Center(
-        child: Text(
-          'Contenu de la page des règles',
-          style: Theme.of(context).textTheme.headline5,
+      body: Container(
+        padding: const EdgeInsets.all(50),
+        child: Center(
+            child: Column(
+              children: [
+
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Règles du jeu :',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w800,
+                      fontSize: 22,
+                      decoration: TextDecoration.underline,
+                    ),),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("Vous devez toucher les taupes qui apparaissent à l'écran afin de gagner des points. C'est au bout d'un certain nombre de points que vous terminerez le niveau.", textAlign: TextAlign.center),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("De mignions petits lapins sont aussi visibles à l'écran. Ne les touchez pas si vous ne voulez pas perdre des vies.", textAlign: TextAlign.center),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("Venez à bout d'un niveau pour débloquer le suivant, jusqu'à tous les réussir !", textAlign: TextAlign.center),
+                ),
+              ],
+            )
         ),
       ),
     );
