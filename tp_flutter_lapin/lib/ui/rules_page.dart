@@ -11,30 +11,38 @@ class RulesScreen extends StatelessWidget {
       ),
       body: Container(
         padding: const EdgeInsets.all(50),
-        child: Center(
+        child: const Center(
             child: Column(
               children: [
 
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8.0),
                   child: Text('Règles du jeu :',
                     style: TextStyle(
                       fontWeight: FontWeight.w800,
                       fontSize: 22,
-                      decoration: TextDecoration.underline,
-                    ),),
+                    ),
+                  ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text("Vous devez toucher les taupes qui apparaissent à l'écran afin de gagner des points. C'est au bout d'un certain nombre de points que vous terminerez le niveau.", textAlign: TextAlign.center),
+                  padding: EdgeInsets.all(8.0),
+                  child: Text("Les règles du jeu sont simple !", textAlign: TextAlign.center),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text("De mignions petits lapins sont aussi visibles à l'écran. Ne les touchez pas si vous ne voulez pas perdre des vies.", textAlign: TextAlign.center),
+                  padding: EdgeInsets.all(8.0),
+                  child: Text("Vous devez toucher les lapins qui apparaissent à l'écran de plus vite possible afin de gagner des points. C'est au bout de 15 lapins touchés, vous terminerez le niveau.", textAlign: TextAlign.center),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text("Venez à bout d'un niveau pour débloquer le suivant, jusqu'à tous les réussir !", textAlign: TextAlign.center),
+                  padding: EdgeInsets.all(8.0),
+                  child: Text("De mignionnes petites taupes sont aussi visibles à l'écran. Ne les touchez pas si vous ne voulez pas faire baisser votre score final.", textAlign: TextAlign.center),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text("Il y a différents niveaux disponibles ! Parcours les, et bat des records de vitesse !", textAlign: TextAlign.center),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text("BCD GAMES PRODUCTION", textAlign: TextAlign.center),
                 ),
               ],
             )
