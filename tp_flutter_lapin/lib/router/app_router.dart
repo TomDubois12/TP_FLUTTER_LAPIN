@@ -8,6 +8,7 @@ import '../ui/list_level_page.dart';
 import 'package:tp_flutter_lapin/ui/level_1.dart';
 import 'package:tp_flutter_lapin/ui/level_2.dart';
 import 'package:tp_flutter_lapin/ui/level_3.dart';
+import 'package:tp_flutter_lapin/ui/level_4.dart';
 import '../ui/score_page.dart';
 import '../ui/rules_page.dart';
 
@@ -55,6 +56,12 @@ final router = GoRouter(
                         path: '3',
                         builder: (BuildContext context, GoRouterState state){
                           return const Niveau3Screen();
+                        },
+                      ),
+                      GoRoute(
+                        path: '4',
+                        builder: (BuildContext context, GoRouterState state){
+                          return const Niveau4Screen();
                         },
                       ),
                     ]
