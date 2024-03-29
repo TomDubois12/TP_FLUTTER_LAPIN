@@ -13,15 +13,15 @@ class LevelsScreen extends StatelessWidget{
             children: [
               ElevatedButton(
                 child: const Text('Niveau 1'),
-                onPressed: () => context.go('/home/name/level/1'),
+                onPressed: () => context.go('/home/level/1'),
               ),
               ElevatedButton(
                 child: const Text('Niveau 2'),
-                onPressed: () => context.go('/home/name/level/2'),
+                onPressed: () => context.go('/home/level/2'),
               ),
               ElevatedButton(
                 child: const Text('Niveau 3'),
-                onPressed: () => context.go('/home/name/level/3'),
+                onPressed: () => context.go('/home/level/3'),
               ),
               ElevatedButton(
                 child: const Text('Niveau 4'),

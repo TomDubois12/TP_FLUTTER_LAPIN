@@ -32,10 +32,6 @@ final router = GoRouter(
           name: 'home',
           builder: (context,state) => const HomeScreen(),
           routes: <RouteBase>[
-            GoRoute(
-              path: 'name',
-              builder: (context, state) => const NameScreen(),
-              routes: [
                 GoRoute(
                     path: 'level',
                     builder: (context, state) => const LevelsScreen(),

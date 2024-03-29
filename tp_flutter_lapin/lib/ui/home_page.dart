@@ -6,6 +6,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(title: const Text('Page d\'accueil')),
       body: Center(
@@ -22,7 +23,7 @@ class HomeScreen extends StatelessWidget {
               children: [
                 ElevatedButton(
                   child: const Text('Jouer'),
-                  onPressed: () => context.go('/home/name'),
+                  onPressed: () => context.go('/home/level'),
                 ),
                 ElevatedButton(
                   child: const Text('Scores'),
