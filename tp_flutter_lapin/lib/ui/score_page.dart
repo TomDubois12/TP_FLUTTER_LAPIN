@@ -29,30 +29,52 @@ class _ScoresScreenState extends State<ScoreScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Scores'),
+        title: Text(
+          'Scores',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+          ),
+        ),
       ),
-      body: FutureBuilder<List<Score>>(
-        future: futureScore,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text('No scores available'));
-          } else {
-            return ListView.builder(
-              itemCount: snapshot.data!.length,
-              itemBuilder: (context, index) {
-                final score = snapshot.data![index];
-                return ListTile(
-                  title: Text(score.name),
-                  subtitle: Text('Level: ${score.niveau}, Score: ${score.score}'),
-                );
-              },
-            );
-          }
-        },
+      body: Container(
+        padding: EdgeInsets.all(10),
+        child: FutureBuilder<List<Score>>(
+          future: futureScore,
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Center(child: Text(
+                'Error: ${snapshot.error}',
+              ));
+            } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+              return Center(child: Text(
+                'Pas encore de score',
+                style: TextStyle(fontStyle: FontStyle.italic, color: Colors.redAccent),
+              ));
+            } else {
+              return ListView.builder(
+                itemCount: snapshot.data!.length,
+                itemBuilder: (context, index) {
+                  final score = snapshot.data![index];
+                  return Card(
+                    elevation: 4,
+                    margin: EdgeInsets.symmetric(vertical: 8),
+                    child: ListTile(
+                      title: Text(
+                        score.name,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text(
+                        'Level: ${score.niveau}, Score: ${score.score}',
+                        style: TextStyle(color: Colors.red[900]),
+                      ),
+                    ),
+                  );
+                },
+              );
+            }
+          },
+        ),
       ),
     );
   }

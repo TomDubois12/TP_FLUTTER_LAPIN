@@ -4,6 +4,8 @@ import 'dart:math';
 import 'package:go_router/go_router.dart';
 
 import '../database/score_db.dart';
+import '../dialogues/congratulationsDialog.dart';
+import '../dialogues/failDialog.dart';
 
 class Niveau1Screen extends StatefulWidget {
   const Niveau1Screen({Key? key}) : super(key: key);
@@ -46,42 +48,23 @@ class _Niveau1ScreenState extends State<Niveau1Screen> {
   // Fonction pour calculer le score
   double calculerScore(int tempsEcoule) {
     // Calcul du score en utilisant la formule
-    double score = (_lapin * 100) - (_taupe * 50) - (tempsEcoule * 4);
+    double score = (_lapin * 25) - (_taupe * 50) - (tempsEcoule * 4);
 
     // Assurez-vous que le score est toujours positif
     return score >= 0 ? score : 0;
   }
 
-  Future<void> _showCongratulationsDialog(nbTaupe) async {
-    _score = calculerScore(_stopwatch.elapsed.inSeconds);
-    TextEditingController nameController = TextEditingController(); // Ajoutez cette ligne
+  Future<void> _showCongratulationsDialog(int nbTaupe) async {
+    double score = calculerScore(_stopwatch.elapsed.inSeconds);
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Bravo!'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text('Vous avez touché 15 lapins en ${_stopwatch.elapsed
-                    .inSeconds} secondes. ($nbTaupe taupe.s ont été touché.es.)'
-                    'Votre score est de : ${_score}'),
-                const Text('Entrez votre nom :'), // Ajoutez cette ligne
-                TextField(controller: nameController), // Ajoutez cette ligne
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            ElevatedButton(
-              child: const Text('Retournez au menu'),
-              onPressed: () {
-                String playerName = nameController.text.trim(); // Ajoutez cette ligne
-                _saveScore(playerName, _score); // Ajoutez cette ligne
-                context.go('/home');
-              },
-            ),
-          ],
+        return CongratulationsDialog(
+          nbTaupe: nbTaupe,
+          score: score,
+          stopwatch: _stopwatch,
+          onSaveScore: _saveScore,
         );
       },
     );
@@ -108,38 +91,28 @@ class _Niveau1ScreenState extends State<Niveau1Screen> {
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Dommage !'),
-          content: const SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text('Vous avez touché 10 taupes.'),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            ElevatedButton(
-              child: const Text('Recommencer le niveau'),
-              onPressed: () {
-                setState(() {
-                  _lapin = 0;
-                  _taupe = 0;
-                  _indexLapin = Random().nextInt(2);
-                  _stopwatch.reset();
-                  _stopwatch.start();
-                });
-                Navigator.of(context).pop();
-              },
-            ),
-            ElevatedButton(
-              child: const Text('Retournez au menu'),
-              onPressed: () => context.go('/home'),
-            ),
-          ],
+        return FailDialog(
+          nbTaupe: _taupe,
+          niveau: 1, // Ajoutez le niveau ici
+          onRetry: () {
+            setState(() {
+              _lapin = 0;
+              _taupe = 0;
+              _indexLapin = Random().nextInt(2);
+              _stopwatch.reset();
+              _stopwatch.start();
+            });
+            Navigator.of(context).pop();
+          },
+          onReturnToMenu: () {
+            context.go('/home');
+          },
         );
       },
     );
   }
+
+
 
   @override
   Widget build(BuildContext context) {
