@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:go_router/go_router.dart';
 
+import '../database/score_db.dart';
+import '../dialogues/congratulationsDialog.dart';
+import '../dialogues/failDialog.dart';
+
 class Niveau2Screen extends StatefulWidget {
   const Niveau2Screen({Key? key}) : super(key: key);
 
@@ -14,6 +18,7 @@ class _Niveau2ScreenState extends State<Niveau2Screen> {
   int _indexLapin = Random().nextInt(4);
   int _taupe = 0;
   int _lapin = 0;
+  double _score = 0;
   Stopwatch _stopwatch = Stopwatch();
 
   @override
@@ -27,7 +32,7 @@ class _Niveau2ScreenState extends State<Niveau2Screen> {
       _lapin++;
       if (_lapin == 15) {
         _stopwatch.stop();
-        _showCongratulationsDialog();
+        _showCongratulationsDialog(_taupe);
       } else {
         _indexLapin = Random().nextInt(4);
       }
@@ -40,31 +45,44 @@ class _Niveau2ScreenState extends State<Niveau2Screen> {
     setState(() {});
   }
 
-  Future<void> _showCongratulationsDialog() async {
+  // Fonction pour calculer le score
+  double calculerScore(int tempsEcoule) {
+    // Calcul du score en utilisant la formule
+    double score = (_lapin * 50) - (_taupe * 75) - (tempsEcoule * 4);
+
+    // Assurez-vous que le score est toujours positif
+    return score >= 0 ? score : 0;
+  }
+
+  Future<void> _showCongratulationsDialog(int nbTaupe) async {
+    double score = calculerScore(_stopwatch.elapsed.inSeconds);
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Bravo!'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text('Vous avez touché 15 lapins en ${_stopwatch.elapsed
-                    .inSeconds} secondes.'),
-                Text('Retournez au menu pour consulter vos scores')
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            ElevatedButton(
-              child: const Text('Retournez au menu'),
-              onPressed: () => context.go('/home'),
-            ),
-          ],
+        return CongratulationsDialog(
+          nbTaupe: nbTaupe,
+          score: score,
+          stopwatch: _stopwatch,
+          onSaveScore: _saveScore,
         );
       },
     );
+  }
+
+  void _saveScore(String playerName, double score) async {
+    // Ajoutez des logs pour afficher les informations pertinentes
+    print('Nom du joueur: $playerName');
+    print('Niveau: 2'); // Niveau actuel
+    print('Score: $_score'); // Score du joueur
+
+    try {
+      // Enregistrez le nom, le niveau et le score dans la base de données
+      await ScoreDB().create(niveau: 2, name: playerName, score: score.toInt());
+      print('Score enregistré avec succès dans la base de données');
+    } catch (e) {
+      print('Erreur lors de l\'enregistrement du score: $e');
+    }
   }
 
   Future<void> _showFailsDialog() async {
@@ -72,34 +90,22 @@ class _Niveau2ScreenState extends State<Niveau2Screen> {
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Dommage !'),
-          content: const SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text('Vous avez touché 10 taupes.'),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            ElevatedButton(
-              child: const Text('Recommencer le niveau'),
-              onPressed: () {
-                setState(() {
-                  _lapin = 0;
-                  _taupe = 0;
-                  _indexLapin = Random().nextInt(4);
-                  _stopwatch.reset();
-                  _stopwatch.start();
-                });
-                Navigator.of(context).pop();
-              },
-            ),
-            ElevatedButton(
-              child: const Text('Retournez au menu'),
-              onPressed: () => context.go('/home'),
-            ),
-          ],
+        return FailDialog(
+          nbTaupe: _taupe,
+          niveau: 1, // Ajoutez le niveau ici
+          onRetry: () {
+            setState(() {
+              _lapin = 0;
+              _taupe = 0;
+              _indexLapin = Random().nextInt(2);
+              _stopwatch.reset();
+              _stopwatch.start();
+            });
+            Navigator.of(context).pop();
+          },
+          onReturnToMenu: () {
+            context.go('/home');
+          },
         );
       },
     );

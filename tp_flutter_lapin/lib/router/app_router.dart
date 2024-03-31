@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 
 
 import '../ui/home_page.dart';
-import '../ui/name.dart';
 import '../ui/list_level_page.dart';
 import 'package:tp_flutter_lapin/ui/level_1.dart';
 import 'package:tp_flutter_lapin/ui/level_2.dart';
@@ -62,8 +61,6 @@ final router = GoRouter(
                       ),
                     ]
                 ),
-              ]
-            ),
             GoRoute(
               path: 'score',
               builder: (context, state) => const ScoreScreen(),
@@ -72,18 +69,6 @@ final router = GoRouter(
               path: 'rules',
               builder: (context, state) => const RulesScreen(),
             ),
-          ]),
-
-
-      // GoRoute(
-      //   path: '/details/:id',
-      //   name: 'details',
-      //   builder: (context,state){
-      //     final id = state.pathParameters['id'];
-      //     return DetailsScreen(id:id);
-      //   },
-      // ),
-
-
-    ]
-);
+          ])
+        ]
+    );

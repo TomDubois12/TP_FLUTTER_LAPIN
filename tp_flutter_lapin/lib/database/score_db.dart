@@ -29,7 +29,7 @@ class ScoreDB{
   Future<List<Score>> fetchAll() async{
     final database = await DatabaseService().database;
     final scores = await database.rawQuery(
-      '''SELECT * from $tableName ORDER BY score;''');
+      '''SELECT * from $tableName ORDER BY score DESC;''');
     return scores.map((score) => Score.fromSqfliteDatabase(score)).toList();
   }
 
