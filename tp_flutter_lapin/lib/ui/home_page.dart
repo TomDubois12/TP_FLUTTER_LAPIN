@@ -8,15 +8,15 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Page d\'accueil')),
+      appBar: AppBar(title: const Text('Hit The Rabbit')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
               'assets/Logo.png',
-              width: 400,
-              height: 400,
+              width: 300,
+              height: 300,
             ),
             const SizedBox(height: 20),
             Column(

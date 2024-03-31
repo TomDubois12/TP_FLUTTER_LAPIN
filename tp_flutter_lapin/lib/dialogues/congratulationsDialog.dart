@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class CongratulationsDialog extends StatelessWidget {
   final int nbTaupe;
@@ -35,7 +36,7 @@ class CongratulationsDialog extends StatelessWidget {
           onPressed: () {
             String playerName = nameController.text.trim();
             onSaveScore(playerName, score);
-            Navigator.of(context).pop();
+            context.go('/home');
           },
         ),
       ],
