@@ -72,6 +72,9 @@ class _Niveau3ScreenState extends State<Niveau3Screen> {
   }
 
   void _saveScore(String playerName, double score) async {
+    if (playerName.isEmpty) {
+      playerName = 'John Doe';
+    }
     print('Nom du joueur: $playerName');
     print('Niveau 3:'); // Niveau actuel
     print('Score: $_score'); // Score du joueur
