@@ -33,6 +33,11 @@ class ScoreDB{
     return scores.map((score) => Score.fromSqfliteDatabase(score)).toList();
   }
 
+  Future<int> deleteAll() async {
+    final database = await DatabaseService().database;
+    return await database.delete(tableName);
+  }
+
   Future<Score> fetchById(int id) async{
     final database = await DatabaseService().database;
     final score = await database.rawQuery(
