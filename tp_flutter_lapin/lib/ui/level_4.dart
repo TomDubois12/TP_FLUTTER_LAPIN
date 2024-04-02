@@ -85,15 +85,12 @@ class _Niveau4ScreenState extends State<Niveau4Screen> {
 
   // Fonction pour calculer le score
   double calculerScore(int tempsEcoule) {
-    // Calcul du score en utilisant la formule ci-dessous
-    double score = (_lapin * 100) - (_taupe * 125) - (tempsEcoule * 4);
-
-    // On s'assure d'un score positif
-    return score >= 0 ? score : 0;
+    double score = (_lapin * 250) - (_taupe * 300) - (tempsEcoule/100000);
+    return double.parse((score).toStringAsFixed(2));
   }
 
   Future<void> _showCongratulationsDialog(int nbTaupe) async {
-    double score = calculerScore(_stopwatch.elapsed.inSeconds);
+    double score = calculerScore(_stopwatch.elapsed.inMicroseconds);
     return showDialog<void>(
       context: context,
       barrierDismissible: false,

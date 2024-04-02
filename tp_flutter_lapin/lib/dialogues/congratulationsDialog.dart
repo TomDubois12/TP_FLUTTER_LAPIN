@@ -24,7 +24,7 @@ class CongratulationsDialog extends StatelessWidget {
       content: SingleChildScrollView(
         child: ListBody(
           children: <Widget>[
-            Text('Vous avez touché 15 lapins en ${stopwatch.elapsed.inSeconds} secondes. ($nbTaupe taupe(s) ont été touchée(s). Votre score est de : ${score}'),
+            Text('Vous avez touché 15 lapins en ${stopwatch.elapsed.inMicroseconds} microsecondes. ($nbTaupe taupe(s) ont été touchée(s). Votre score est de : ${score}'),
             const Text('Entrez votre nom :'),
             TextField(controller: nameController),
           ],
