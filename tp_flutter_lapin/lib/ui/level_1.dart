@@ -47,10 +47,7 @@ class _Niveau1ScreenState extends State<Niveau1Screen> {
 
   // Fonction pour calculer le score
   double calculerScore(int tempsEcoule) {
-    // Calcul du score en utilisant la formule
     double score = (_lapin * 25) - (_taupe * 50) - (tempsEcoule * 4);
-
-    // Assurez-vous que le score est toujours positif
     return score >= 0 ? score : 0;
   }
 
@@ -71,13 +68,12 @@ class _Niveau1ScreenState extends State<Niveau1Screen> {
   }
 
   void _saveScore(String playerName, double score) async {
-    // Ajoutez des logs pour afficher les informations pertinentes
     print('Nom du joueur: $playerName');
     print('Niveau: 1'); // Niveau actuel
     print('Score: $_score'); // Score du joueur
 
     try {
-      // Enregistrez le nom, le niveau et le score dans la base de données
+      // Enregistrer le nom, le niveau et le score dans la base de données
       await ScoreDB().create(niveau: 1, name: playerName, score: score.toInt());
       print('Score enregistré avec succès dans la base de données');
     } catch (e) {
@@ -93,7 +89,7 @@ class _Niveau1ScreenState extends State<Niveau1Screen> {
       builder: (BuildContext context) {
         return FailDialog(
           nbTaupe: _taupe,
-          niveau: 1, // Ajoutez le niveau ici
+          niveau: 1,
           onRetry: () {
             setState(() {
               _lapin = 0;

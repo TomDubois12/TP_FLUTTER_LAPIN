@@ -28,12 +28,6 @@ class _Niveau3ScreenState extends State<Niveau3Screen> {
   void initState() {
     super.initState();
     _stopwatch.start();
-
-    // _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-    //   setState(() {
-    //     _indexLapin = Random().nextInt(9);
-    //   });
-    // });
   }
 
   void gererTape(int index) {
@@ -42,7 +36,6 @@ class _Niveau3ScreenState extends State<Niveau3Screen> {
       _lapin++;
       if (_lapin == 15) {
         _stopwatch.stop();
-        // _timer.cancel();
         _showCongratulationsDialog(_taupe);
       } else {
         _indexLapin = Random().nextInt(9);
@@ -58,10 +51,8 @@ class _Niveau3ScreenState extends State<Niveau3Screen> {
 
   // Fonction pour calculer le score
   double calculerScore(int tempsEcoule) {
-    // Calcul du score en utilisant la formule
+    // Calcul du score en utilisant la formule ci-dessous
     double score = (_lapin * 75) - (_taupe * 100) - (tempsEcoule * 4);
-
-    // Assurez-vous que le score est toujours positif
     return score >= 0 ? score : 0;
   }
 
@@ -82,13 +73,12 @@ class _Niveau3ScreenState extends State<Niveau3Screen> {
   }
 
   void _saveScore(String playerName, double score) async {
-    // Ajoutez des logs pour afficher les informations pertinentes
     print('Nom du joueur: $playerName');
     print('Niveau 3:'); // Niveau actuel
     print('Score: $_score'); // Score du joueur
 
     try {
-      // Enregistrez le nom, le niveau et le score dans la base de données
+      // Enregistrer le nom, le niveau et le score dans la base de données
       await ScoreDB().create(niveau: 3, name: playerName, score: score.toInt());
       print('Score enregistré avec succès dans la base de données');
     } catch (e) {
@@ -103,7 +93,7 @@ class _Niveau3ScreenState extends State<Niveau3Screen> {
       builder: (BuildContext context) {
         return FailDialog(
           nbTaupe: _taupe,
-          niveau: 1, // Ajoutez le niveau ici
+          niveau: 1,
           onRetry: () {
             setState(() {
               _lapin = 0;

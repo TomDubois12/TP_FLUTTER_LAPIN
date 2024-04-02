@@ -90,7 +90,7 @@ class _ScoresScreenState extends State<ScoreScreen> {
   Future<void> _showDeleteConfirmationDialog(BuildContext context) async {
     return showDialog<void>(
       context: context,
-      barrierDismissible: false, // User must tap button!
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Confirmer la suppression'),
@@ -122,9 +122,9 @@ class _ScoresScreenState extends State<ScoreScreen> {
 
   Future<void> _deleteAllScores(BuildContext context) async {
     await scoreDB.deleteAll();
-    Navigator.of(context).pop(); // Dismiss the confirmation dialog
+    Navigator.of(context).pop();
     setState(() {
-      futureScore = ScoreDB().fetchAll(); // Refresh the score list
+      futureScore = ScoreDB().fetchAll();
     });
   }
 }
